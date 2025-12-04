@@ -1,4 +1,27 @@
 body {
   background-color: #000;
   font-size: 16px;
+  font-family: "Inter", sans-serif;
+}
+
+/* split screen in to grids. 
+vertical 3 pieces -> left space, main, right space. 
+horizontal 3 pieces -> header, main, footer. */
+.container
+{
+  display: grid;
+  grid-template-columns: 1fr min(1440px, 94%) 1fr;
+  grid-template-rows: 96px auto 72px;
+}
+
+/* move every element in container to second column, centered. */
+.container > *
+{
+  grid-column: 2;
+}
+
+/* not align center the container elements. trim left and right spaces. */
+.container > .fluid
+{
+  grid-column: 1/-1;
 }
