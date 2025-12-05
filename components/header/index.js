@@ -7,7 +7,6 @@ import styles from './styles.module.css';
 function Header()
 {
     return(
-        <!-- for spreading header container to sides -->
         <header className={'${styles.header} container fluid'}>
             <div className={styles.headerWrapper}>
                 <Link href="/" className={styles.logo}>
