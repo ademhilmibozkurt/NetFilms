@@ -3,9 +3,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #ffff;
 }
 
 .footer a
 {
     text-decoration: underline;
+    color:#ffff;
 }

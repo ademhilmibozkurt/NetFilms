@@ -1,6 +1,7 @@
 .header
 {
     background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0));
+    color: #ffff;
 }
 
 .headerWrapper
@@ -8,6 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: #fafafa;
 }
 
 .logo

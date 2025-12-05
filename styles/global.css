@@ -1,7 +1,13 @@
 body {
   background-color: #000;
+  color: #ffff;
   font-size: 16px;
   font-family: "Inter", sans-serif;
+}
+
+div[data-nextjs-scroll-focus-boundry]
+{
+  height: 100%;
 }
 
 /* split screen in to grids. 

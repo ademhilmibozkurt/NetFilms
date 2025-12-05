@@ -12,7 +12,7 @@ function MoviesSection({title,movies})
             <div className={styles.movies}>
                 {movies.map((movie) => (
                     <div className={styles.movie} key={movie.id}>
-                        <Link>
+                        <Link href={'/movie/${movie.id}'}>
                             <Image 
                                 fill
                                 unoptimized
