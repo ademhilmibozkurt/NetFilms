@@ -13,11 +13,11 @@ function FeaturedMovie({movie={}, isCompact=true})
         <div className={styles.movieWrapper}>
             <h1 className={styles.movieTitle}>{title}</h1>
             <p 
-                className={'${styles.overview} ${isCompact ? style.shortOverview: ""}'}>
+                className={`${styles.overview} ${isCompact ? style.shortOverview: ""}`}>
                 {overview}
             </p>
             <div className={styles.actionButtons}>
-                <Link className={styles.palyButton} href={'/movie/${movie.id}'}>
+                <Link className={styles.palyButton} href={`/movie/${movie.id}`}>
                 Play
                 </Link>
                 <button className={styles.addButton}>
@@ -28,7 +28,7 @@ function FeaturedMovie({movie={}, isCompact=true})
                 <div className={styles.moviePosterOverlay}></div>
                 <Image 
                     unoptimized
-                    src={'https://image.tmdb.ord/t/p/original${poster_path}'}
+                    src={`https://image.tmdb.ord/t/p/original${poster_path}`}
                     alt={title}
                     fill
                 />
