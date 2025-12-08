@@ -2,19 +2,18 @@ import React from "react";
 import {notFound} from "next/navigation";
 
 import MovieContainer from "@/containers/movie";
-import Movies from "@/mocks/movies.json";
 
-async function delay(ms)
+const API_URL = 'https://api.themoviedb.org/3'
+
+const getMovie = async (movieId) =>
 {
-    return new Promise((resolve) => setTimeout(resolve,ms));
-}
+    const res = await fetch(`${API_URL}/discover/movie/${movieId}?api_key=${process.env.API_KEY}`);
+    return res.json();
+};
 
 async function MoviePage({params, searchParams})
 {
-    await delay(2000);
-    const movieDetail = Movies.results.find(
-        (movie) => movie.id === Number(params.id)
-    );
+    const movieDetail = await getMovie(params.movieId);
 
     if (!movieDetail)
     {

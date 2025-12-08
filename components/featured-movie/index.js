@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 
 function FeaturedMovie({movie={}, isCompact=true})
 {
-    const {poster_path, title, overview} = movie;
+    const {poster_path, title="", overview} = movie;
 
     return (
         <div className={styles.movieWrapper}>
@@ -26,12 +26,11 @@ function FeaturedMovie({movie={}, isCompact=true})
             </div>
             <div className={styles.moviePoster}>
                 <div className={styles.moviePosterOverlay}></div>
-                <Image 
-                    unoptimized
-                    src={`https://image.tmdb.ord/t/p/original${poster_path}`}
-                    alt={title}
-                    fill
-                />
+                    <Image alt={title}
+                        unoptimized
+                        src={`https://image.tmdb.ord/t/p/original${poster_path}`}
+                        fill
+                    />
             </div>
         </div>
     );

@@ -4,30 +4,61 @@
 import React from 'react';
 import HomeContainer from '@/containers/home';
 
-import Movies from "@/mocks/movies.json"
+const API_URL = 'https://api.themoviedb.org/3'
 
-async function delay(ms)
+const getTopRatedMovies = async () =>
 {
-    return new Promise((resolve) => setTimeout(resolve,ms));
-}
+    const res = await fetch(`${API_URL}/movie/top_rated?api_key=${process.env.API_KEY}`);
+    return res.json();
+};
+
+const getPopularMovies = async () =>
+{
+    const res = await fetch(`${API_URL}/movie/popular?api_key=${process.env.API_KEY}`);
+    return res.json();
+};
+
+const getCategories = async () =>
+{
+    const res = await fetch(`${API_URL}/genres/movies/list?api_key=${process.env.API_KEY}`);
+    return res.json();
+};
+
+const getSingleCategory = async (genreId) =>
+{
+    const res = await fetch(`${API_URL}/discover/movie?api_key=${process.env.API_KEY}&with_genres=${genreId}`);
+    return res.json();
+};
 
 async function HomePage({params})
 {
-    await delay(5000);
     let selectedCategory;
+
+    // use promises for not conflicting data fetching.
+    // this method will not wait for each api call
+    const topRatedPromise = getTopRatedMovies();
+    const popularPromise = getPopularMovies();
+    const categoryPromise = getCategories();
+
+    const [{results: topRatedMovies}, {results: popularMovies}, {genres: categories}] = 
+        await Promise.all([topRatedPromise, popularPromise, categoryPromise]);
 
     if(params.category?.length >0)
     {
-        selectedCategory = true;
+        const {results} = await getSingleCategory(params.category[0]);
+        selectedCategory = results
     }
 
     return (    
-        <HomeContainer 
-        selectedCategory={
-            {
-                id    : params.category?.[0] ?? "",
-                movies: selectedCategory ? Movies.results.slice(0,7) : [],
-            }}/>
+        <HomeContainer
+            topRatedMovies={topRatedMovies}
+            popularMovies={popularMovies}
+            categories={categories}
+            selectedCategory={
+                {
+                    id    : params.category?.[0] ?? "",
+                    movies: selectedCategory ? selectedCategory.slice(0,7) : [],
+                }}/>
     );
 }
 
