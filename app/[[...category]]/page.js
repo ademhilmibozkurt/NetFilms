@@ -10,13 +10,9 @@ async function HomePage({params=""})
     let selectedCategory;
 
     // use promises for not conflicting data fetching.
-    // this method will not wait for each api call
-    const topRatedPromise = getTopRatedMovies();
-    const popularPromise = getPopularMovies();
-    const categoryPromise = getCategories();
-
+    // this method will not wait for each api call.
     const [{results: topRatedMovies}, {results: popularMovies}, {genres: categories}] = 
-        await Promise.all([topRatedPromise, popularPromise, categoryPromise]);
+        await Promise.all([getTopRatedMovies(), getPopularMovies(), getCategories()]);
 
     if(params.category?.length > 0)
     {
