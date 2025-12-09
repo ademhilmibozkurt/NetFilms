@@ -4,16 +4,19 @@ import {notFound} from "next/navigation";
 import MovieContainer from "@/containers/movie";
 import {getMovie} from "@/services/movie"
 
-async function MoviePage({params, searchParams})
+async function MoviePage(props)
 {
-    const movieDetail = await getMovie(params.movieId);
+    const params = await props.params;
+    const searchParams = await props.searchParams;
+    
+    const movieDetail = await getMovie(params.id);
 
     if (!movieDetail)
     {
         notFound();
     }
 
-    if (searchParams.error === "true")
+    if (searchParams?.error === "true")
     {
         throw new Error("Error occured!");
     }
