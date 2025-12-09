@@ -5,7 +5,7 @@ import React from 'react';
 import HomeContainer from '@/containers/home';
 import { getTopRatedMovies, getPopularMovies, getCategories, getSingleCategory } from '@/services/movie';
 
-async function HomePage({params=""})
+async function HomePage({params})
 {
     let selectedCategory;
 
@@ -14,9 +14,9 @@ async function HomePage({params=""})
     const [{results: topRatedMovies}, {results: popularMovies}, {genres: categories}] = 
         await Promise.all([getTopRatedMovies(), getPopularMovies(), getCategories()]);
 
-    if(params.category?.length > 0)
+    if(params.categories?.length > 0)
     {
-        const {results} = await getSingleCategory(params.category[0]);
+        const {results} = await getSingleCategory(params.categories[0]);
         selectedCategory = results;
     }
 
@@ -27,7 +27,7 @@ async function HomePage({params=""})
             categories={categories}
             selectedCategory={
                 {
-                    id    : params.category?.[0] ?? "",
+                    id    : params.categories?.[0] ?? "",
                     movies: selectedCategory ? selectedCategory.slice(0,7) : [],
                 }}/>
     );

@@ -3,8 +3,10 @@ import Link from "next/link";
 
 import styles from "./styles.module.css";
 
-function Categories({categories})
+function Categories(props)
 {
+    const categories = props.categories;
+    
     return (
         <div className={styles.categories}>
             {categories.map((category) => (

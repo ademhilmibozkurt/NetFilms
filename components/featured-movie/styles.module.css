@@ -9,7 +9,7 @@
 
 .moviePoster
 {
-
+    object-fit: fill;
 }
 
 .movieTitle
@@ -25,6 +25,8 @@
 .overview
 {
     font-size: 24px;
+    border: #000000;
+    border-radius: 1px;
     max-width: 50ch;
 }
 
@@ -47,11 +49,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #eee;
+    border: 2px solid #424040;
     border-radius: 999px;
     width: 62px;
     height: 62px;
-    color: #eee;
+    color: #000000;
 }
 
 .playButton
@@ -61,7 +63,7 @@
     justify-content: center;
     background-color: #eee;
     color: #222;
-    width: 300px;
+    width: 250px;
     border-radius: 9999px;
     font-size: 20px;
     font-weight: 700;
@@ -76,9 +78,9 @@
     bottom: 0;
     background: linear-gradient(
         rgba(0,0,0,1) 0%,
-        rgba(0,0,0,0.9) 30%,
-        rgba(0,0,0,0.7) 50%,
-        rgba(255,255,255,0) 100%
+        rgba(0,0,0,0.7) 20%,
+        rgba(0,0,0,0.7) 25%,
+        rgba(255,255,255,0) 70%
     );
     z-index: -1;
 }
